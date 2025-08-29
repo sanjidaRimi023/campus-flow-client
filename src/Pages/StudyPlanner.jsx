@@ -3,7 +3,7 @@ import React from 'react';
 const StudyPlanner = () => {
     return (
         <div>
-            stydy planer
+            study planer
         </div>
     );
 };
