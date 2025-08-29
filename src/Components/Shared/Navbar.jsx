@@ -9,17 +9,34 @@ import {
   Wallet,
   X,
 } from "lucide-react";
-import { Link } from "react-scroll";
+
 import { motion, AnimatePresence } from "framer-motion";
+import { NavLink } from "react-router";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { id: "study-planner", label: "Study Planner", icon: <NotebookPen size={18} /> },
-    { id: "exam-qa", label: "Exam Q&A", icon: <FileSpreadsheet size={18} /> },
-    { id: "budget-tracker", label: "Budget Tracker", icon: <Wallet size={18} /> },
-    { id: "class-schedule", label: "Class Schedule", icon: <ClipboardClock size={18} /> },
+    {
+      label: "Study Planner",
+      icon: <NotebookPen size={18} />,
+      path: "/study-planner",
+    },
+    {
+      label: "Exam Q&A",
+      icon: <FileSpreadsheet size={18} />,
+      path: "/exam-qa",
+    },
+    {
+      label: "Budget Tracker",
+      icon: <Wallet size={18} />,
+      path: "/budget-tracker",
+    },
+    {
+      label: "Class Schedule",
+      icon: <ClipboardClock size={18} />,
+      path: "schedule-tracker",
+    },
   ];
 
   return (
@@ -28,17 +45,14 @@ export default function Navbar() {
         <div className="container mx-auto flex items-center justify-between px-6 py-3">
           <div className="flex items-center gap-2">
             <img src={logo} alt="Logo" className="h-12 w-auto drop-shadow-lg" />
-            <h2 className="text-xl font-bold hidden sm:block">
-              Campus Flow
-            </h2>
+            <h2 className="text-xl font-bold hidden sm:block">Campus Flow</h2>
           </div>
 
-          
           <ul className="hidden md:flex items-center gap-6 font-medium">
             {navItems.map((item) => (
               <li key={item.id}>
-                <Link
-                  to={item.id}
+                <NavLink
+                  to={item.path}
                   smooth={true}
                   duration={500}
                   offset={-70}
@@ -46,12 +60,11 @@ export default function Navbar() {
                 >
                   {item.icon}
                   {item.label}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
 
-  
           <div
             className="md:hidden text-white text-2xl cursor-pointer"
             onClick={() => setIsOpen(true)}
@@ -70,7 +83,6 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
               className="fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-yellow-600 to-yellow-500 shadow-2xl md:hidden"
             >
-            
               <div className="flex justify-between items-center px-6 py-4 border-b border-yellow-400">
                 <h2 className="text-lg font-semibold text-white">Menu</h2>
                 <button onClick={() => setIsOpen(false)}>
@@ -78,12 +90,11 @@ export default function Navbar() {
                 </button>
               </div>
 
-       
               <ul className="flex flex-col gap-6 px-6 py-6 font-medium">
                 {navItems.map((item) => (
                   <li key={item.id}>
                     <Link
-                      to={item.id}
+                      to={item.path}
                       smooth={true}
                       duration={500}
                       offset={-70}
