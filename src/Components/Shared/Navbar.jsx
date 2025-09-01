@@ -15,7 +15,6 @@ import { NavLink } from "react-router";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -53,21 +52,18 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50">
-      <nav className="backdrop-blur-lg bg-gradient-to-r from-yellow-500/90 via-yellow-400/80 to-yellow-600/90 shadow-md border-b border-yellow-700/20">
+      <nav className="backdrop-blur-lg bg-white/30">
         <div className="container mx-auto flex items-center justify-between px-6 py-3">
-        
           <div className="flex items-center gap-2">
             <img src={logo} alt="Logo" className="h-12 w-auto drop-shadow-lg" />
             <h2 className="text-xl font-bold hidden sm:block">Campus Flow</h2>
           </div>
-
-         
           <ul className="hidden lg:flex items-center gap-6 font-medium">
             {navItems.map((item) => (
               <li key={item.id}>
                 <NavLink
                   to={item.path}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-yellow-600/50 transition-all duration-300"
+                  className="flex items-center gap-2 px-3 py-2 rounded-full hover:bg-yellow-500 transition-all duration-300"
                 >
                   {item.icon}
                   {item.label}
@@ -93,22 +89,21 @@ export default function Navbar() {
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-yellow-600 to-yellow-500 shadow-2xl lg:hidden z-[50]"
+              className="fixed top-0 right-0 h-full w-64 bg-amber-400 shadow-2xl lg:hidden z-[50]"
             >
               <div className="flex justify-end items-center px-6 py-4 border-b border-yellow-400">
-                
                 <button onClick={() => setIsOpen(false)}>
                   <X className="text-2xl text-white" />
                 </button>
               </div>
 
-              <ul className="flex flex-col gap-6 px-6 py-6 font-medium">
+              <ul className="flex flex-col gap-6 px-6 py-6 font-medium bg-amber-400">
                 {navItems.map((item) => (
                   <li key={item.id}>
                     <NavLink
                       to={item.path}
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-yellow-700/60 transition-all duration-300"
+                      className="flex items-center gap-3 px-3 py-2 rounded-full hover:bg-yellow-400 transition-all duration-300"
                     >
                       {item.icon}
                       {item.label}
